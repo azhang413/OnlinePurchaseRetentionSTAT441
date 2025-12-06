@@ -93,26 +93,24 @@ For each model, we calculated:
 
 ## Results
 
-### Model Performance Comparison
+### Model Performance Comparison (Unified Test Set Evaluation)
 | Model | Accuracy | Precision | Recall | AUC |
 | --- | --- | --- | --- | --- |
-| Logistic Regression (Best Acc) | 90.06% | 95.74% | 92.89% | 91.30% |
-| Logistic Regression (Best AUC) | 89.82% | 96.32% | 92.05% | 92.06% |
-| Neural Network | 89.17% | 92.90% | 93.67% | 91.98% |
-| Random Forest (baseline) | 89.17% | 74.59% | 54.99% | 91.94% |
-| Random Forest (tuned) | 89.46% | 77.45% | 51.82% | 92.7% |
-| XGBoost (baseline) | 89.17% | 71.95% | 57.42% | 91.51% |
-| Random Forest (tuned) | 89.94% | 75.39% | 58.88% | 92.94% |
-| Naive Bayes (baseline) | ~81.43% | Moderate | Moderate | Good |
-| Naive Bayes (optimized) | ~83.80% | Improved | Improved | Improved |
+| Logistic Regression | 89.02% | - | - | 89.02% |
+| Random Forest (tuned) | 89.17% | - | - | 92.70% |
+| XGBoost (tuned) | 89.94% | - | - | 92.95% |
+| Neural Network (MLP) | 89.17% | 92.90% | 93.67% | 91.14% |
+| Naive Bayes (Log-transformed) | ~83.80% | - | - | 87.05% |
+
+*Note: Precision and Recall values are from individual model runs. The unified comparison focused on AUC scores for consistent evaluation.*
 
 ### Key Findings
 
-1. **Best Performer**: The Logistic Regression with Scaled and Log-transformed data achieved the highest accuracy at 90.06%, making it the most reliable and interpretable model for this problem.
+1. **Best Performer**: In our unified model comparison, XGBoost (tuned) achieved the highest AUC (92.95%) and accuracy (89.94%), making it the top performing model for this classification task. Logistic Regression remains the most interpretable model with competitive performance (AUC: 89.02%).
 
-2. **Neural Network**: The deep learning approach was competitive, reaching 89.17% accuracy. It showed promise for capturing complex patterns in customer behavior, and potentially could overcome the robustness of Logistic-Regression with further hyper-parameter tuning.
+2. **Neural Network**: The deep learning approach was competitive, achieving 91.14% AUC and 89.17% accuracy. It showed promise for capturing complex patterns in customer behavior, and potentially could overcome other models with further hyper-parameter tuning and architecture optimization.
 
-3. **Naive Bayes**: Our pure-Python     implementation provided a lightweight baseline at approximately 81% accuracy. Through parameter tuning (adjusting smoothing and variance thresholds), we improved it to 82-84% accuracy. While this didn't match the best models, it showed how even simple probabilistic assumptions can capture meaningful patterns.
+3. **Naive Bayes**: Our pure-Python implementation provided a lightweight baseline with 87.05% AUC and approximately 84% accuracy. Through parameter tuning (adjusting smoothing and variance thresholds), we improved its performance significantly. While this didn't match the best models, it showed how even simple probabilistic assumptions can capture meaningful patterns.
 Tuning has been done by grid searching both auc and best accuracy. 
 The Naive Bayes parameter tuning included ROC curve analysis showing that:
 - Different smoothing parameters had varying effects on model calibration
@@ -230,4 +228,3 @@ A fundamental disagreement exists regarding **`ExitRates`**.
 - **Qiguang (William) Zhu**: Implemented Naive Bayes algorithm, tuned parameters and inspected best model by comparing Area under ROC curve. 
 
 ## Supplement
-
